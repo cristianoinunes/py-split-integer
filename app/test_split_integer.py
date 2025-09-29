@@ -15,8 +15,7 @@ def test_array_is_sorted() -> None:
 
 
 def test_difference_between_max_and_min_is_at_most_one() -> None:
-    result = split_integer(101, 7)
-    assert max(result) - min(result) <= 1
+    assert max(split_integer(101, 7)) - min(split_integer(101, 7)) <= 1
 
 
 def test_should_return_part_equals_to_value_when_split_into_one_part() -> None:
@@ -24,8 +23,7 @@ def test_should_return_part_equals_to_value_when_split_into_one_part() -> None:
 
 
 def test_parts_should_be_sorted_when_they_are_not_equal() -> None:
-    result = split_integer(17, 4)
-    assert result == sorted(result)
+    assert split_integer(17, 4) == sorted(split_integer(17, 4))
 
 
 @pytest.mark.parametrize(
@@ -52,7 +50,6 @@ def test_example_cases(
         (1000, 999),
         (999, 1000),
         (123456, 789),
-        # Removed (0, 1) — not valid as per "positive integers" constraint
     ],
 )
 def test_general_properties(value: int, parts: int) -> None:
@@ -61,3 +58,4 @@ def test_general_properties(value: int, parts: int) -> None:
     assert sum(result) == value
     assert result == sorted(result)
     assert max(result) - min(result) <= 1
+    assert all(isinstance(x, int) for x in result)
